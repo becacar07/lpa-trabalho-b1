@@ -1,11 +1,13 @@
 #include <stdio.h>
 
+#define TARIFA_POR_KM 1.20
+
 int main() {
     int continuar;
     printf("===== SIMULADOR DE ENTREGAS =====\n");
 
     do {
-        double distancia, peso;
+        double distancia, peso, valorBase, subtotal;
         int modalidade, protecao, tentativas;
 
         printf("\nDistancia (km): ");
@@ -43,11 +45,19 @@ int main() {
             scanf("%d", &tentativas);
         }
 
-        printf("\nDistancia: %.2f km\n", distancia);
-        printf("Peso: %.2f kg\n", peso);
-        printf("Modalidade: %d\n", modalidade);
-        printf("Protecao: %d\n", protecao);
-        printf("Tentativas: %d\n", tentativas);
+        if (distancia <= 5) {
+            valorBase = 8.00;
+        } else if (distancia <= 15) {
+            valorBase = 12.00;
+        } else if (distancia <= 30) {
+            valorBase = 18.00;
+        } else {
+            valorBase = 25.00;
+        }
+
+        subtotal = valorBase + distancia * TARIFA_POR_KM;
+
+        printf("\nSubtotal inicial da entrega: R$ %.2f\n", subtotal);
 
         printf("\nDeseja processar outra entrega? (1-Sim, 0-Nao): ");
         scanf("%d", &continuar);
