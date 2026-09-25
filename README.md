@@ -23,4 +23,4 @@ gcc -o sim main.c
 Usei o claude (Sonnet 5), usei ele para correção de códigos e explicar algumas partes do seu documento.
 
 ## Fontes consultadas
-Nenhuma fonte externa além do roteiro da atividade, somente suas apostilas sobre C e a lógica.
+Nenhuma fonte externa além do roteiro da atividade, somente suas apostilas sobre C e lógica.
