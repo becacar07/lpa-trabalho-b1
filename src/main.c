@@ -87,7 +87,15 @@ int main() {
         if (protecao == 1) {
             valorFinal = valorFinal + VALOR_PROTECAO;
         }
+valorFinal = valorFinal + tentativas * VALOR_TENTATIVA;
 
-    turn 0;
-}
-}
+        printf("\nValor final da entrega: R$ %.2f\n", valorFinal);
+
+        printf("\nDeseja processar outra entrega? (1-Sim, 0-Nao): ");
+        scanf("%d", &continuar);
+        while (continuar < 0 || continuar > 1) {
+            printf("Opcao invalida. Digite 0 ou 1: ");
+            scanf("%d", &continuar);
+        }
+    } while (continuar == 1);
+
