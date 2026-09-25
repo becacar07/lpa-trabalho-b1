@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 #define TARIFA_POR_KM 1.20
+#define VALOR_PROTECAO 7.50
+#define VALOR_TENTATIVA 4.00
 
 int main() {
     int continuar;
@@ -8,6 +10,8 @@ int main() {
 
     do {
         double distancia, peso, valorBase, subtotal;
+        double percentualPeso, percentualModalidade;
+        double adicionalPeso, adicionalModalidade, valorFinal;
         int modalidade, protecao, tentativas;
 
         printf("\nDistancia (km): ");
@@ -57,16 +61,33 @@ int main() {
 
         subtotal = valorBase + distancia * TARIFA_POR_KM;
 
-        printf("\nSubtotal inicial da entrega: R$ %.2f\n", subtotal);
-
-        printf("\nDeseja processar outra entrega? (1-Sim, 0-Nao): ");
-        scanf("%d", &continuar);
-        while (continuar < 0 || continuar > 1) {
-            printf("Opcao invalida. Digite 0 ou 1: ");
-            scanf("%d", &continuar);
+        if (peso <= 2) {
+            percentualPeso = 0;
+        } else if (peso <= 5) {
+            percentualPeso = 0.05;
+        } else if (peso <= 10) {
+            percentualPeso = 0.10;
+        } else {
+            percentualPeso = 0.20;
         }
-    } while (continuar == 1);
 
-    printf("\nPrograma encerrado.\n");
-    return 0;
+        if (modalidade == 2) {
+            percentualModalidade = 0.15;
+        } else if (modalidade == 3) {
+            percentualModalidade = 0.30;
+        } else {
+            percentualModalidade = 0;
+        }
+
+        adicionalPeso = subtotal * percentualPeso;
+        adicionalModalidade = subtotal * percentualModalidade;
+
+        valorFinal = subtotal + adicionalPeso + adicionalModalidade;
+
+        if (protecao == 1) {
+            valorFinal = valorFinal + VALOR_PROTECAO;
+        }
+
+    turn 0;
+}
 }
