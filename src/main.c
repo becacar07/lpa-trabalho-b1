@@ -6,6 +6,9 @@
 
 int main() {
     int continuar;
+    int totalEntregas = 0, qtdEconomica = 0, qtdExpressa = 0, qtdPrioritaria = 0;
+    double valorTotal = 0, maiorValor = 0, menorValor = 0;
+
     printf("===== SIMULADOR DE ENTREGAS =====\n");
 
     do {
@@ -87,9 +90,28 @@ int main() {
         if (protecao == 1) {
             valorFinal = valorFinal + VALOR_PROTECAO;
         }
-valorFinal = valorFinal + tentativas * VALOR_TENTATIVA;
+
+        valorFinal = valorFinal + tentativas * VALOR_TENTATIVA;
 
         printf("\nValor final da entrega: R$ %.2f\n", valorFinal);
+
+        totalEntregas = totalEntregas + 1;
+        valorTotal = valorTotal + valorFinal;
+
+        if (totalEntregas == 1 || valorFinal > maiorValor) {
+            maiorValor = valorFinal;
+        }
+        if (totalEntregas == 1 || valorFinal < menorValor) {
+            menorValor = valorFinal;
+        }
+
+        if (modalidade == 1) {
+            qtdEconomica = qtdEconomica + 1;
+        } else if (modalidade == 2) {
+            qtdExpressa = qtdExpressa + 1;
+        } else {
+            qtdPrioritaria = qtdPrioritaria + 1;
+        }
 
         printf("\nDeseja processar outra entrega? (1-Sim, 0-Nao): ");
         scanf("%d", &continuar);
@@ -98,8 +120,17 @@ valorFinal = valorFinal + tentativas * VALOR_TENTATIVA;
             scanf("%d", &continuar);
         }
     } while (continuar == 1);
-while (continuar == 1);
 
-    printf("\nprograma encerrado.\n");
+    printf("\nRESUMO DA SESSAO\n");
+    printf("Entregas processadas: %d\n", totalEntregas);
+    printf("Valor total: R$ %.2f\n", valorTotal);
+    printf("Valor medio: R$ %.2f\n", valorTotal / totalEntregas);
+    printf("Entregas Economicas: %d\n", qtdEconomica);
+    printf("Entregas Expressas: %d\n", qtdExpressa);
+    printf("Entregas Prioritarias: %d\n", qtdPrioritaria);
+    printf("Maior valor: R$ %.2f\n", maiorValor);
+    printf("Menor valor: R$ %.2f\n", menorValor);
+
+    return 0;
 }
 
