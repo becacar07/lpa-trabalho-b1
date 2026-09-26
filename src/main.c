@@ -97,5 +97,9 @@ valorFinal = valorFinal + tentativas * VALOR_TENTATIVA;
             printf("Opcao invalida. Digite 0 ou 1: ");
             scanf("%d", &continuar);
         }
-    } while (continuar &= 1);
+    } while (continuar == 1);
+while (continuar == 1);
+
+    printf("\nprograma encerrado.\n");
+}
 
